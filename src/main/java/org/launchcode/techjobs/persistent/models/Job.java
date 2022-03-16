@@ -1,43 +1,38 @@
 package org.launchcode.techjobs.persistent.models;
 
+
+
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
+
 @Entity
-public class Job{
+public class Job extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private int id;
+    @ManyToOne
+    private Employer employer;
 
-    private String name;
-
-    private String employer;
     private String skills;
+
+
+    public Job(Employer employer, String someSkills) {
+        super();
+        this.employer = employer;
+        this.skills = someSkills;
+    }
 
     public Job() {
     }
 
-    public Job(String anEmployer, String someSkills) {
-        super();
-        this.employer = anEmployer;
-        this.skills = someSkills;
-    }
-
     // Getters and setters.
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmployer() {
+    public Employer getEmployer() {
         return employer;
     }
 
-    public void setEmployer(String employer) {
+    public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 
@@ -48,4 +43,6 @@ public class Job{
     public void setSkills(String skills) {
         this.skills = skills;
     }
+
+
 }
